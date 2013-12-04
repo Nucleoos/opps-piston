@@ -29,10 +29,12 @@ class rc_factory(object):
     """
     CODES = dict(ALL_OK = ('OK', 200),
                  CREATED = ('Created', 201),
+                 ACCEPTED = ('Accepted', 202),
                  DELETED = ('', 204), # 204 says "Don't send a body!"
                  BAD_REQUEST = ('Bad Request', 400),
                  FORBIDDEN = ('Forbidden', 401),
                  NOT_FOUND = ('Not Found', 404),
+                 NOT_ACCEPTABLE = ('Not acceptable', 406),
                  DUPLICATE_ENTRY = ('Conflict/Duplicate', 409),
                  NOT_HERE = ('Gone', 410),
                  INTERNAL_ERROR = ('Internal Error', 500),
@@ -94,7 +96,7 @@ class HttpStatusCode(Exception):
 def validate(v_form, operation='POST'):
     @decorator
     def wrap(f, self, request, *a, **kwa):
-        form = v_form(getattr(request, operation))
+        form = v_form(getattr(request, operation), request.FILES)
     
         if form.is_valid():
             setattr(request, 'form', form)
