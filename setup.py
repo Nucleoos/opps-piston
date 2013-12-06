@@ -7,15 +7,14 @@ except ImportError:
     import ez_setup
     ez_setup.use_setuptools()
     from setuptools import setup, find_packages
-    
-import os
+
 
 setup(
     name = "opps-piston",
-    version = "0.2.3",
+    version = "0.2.4",
     url = 'http://bitbucket.org/jespern/django-piston/wiki/Home',
     license = 'BSD',
-    description = "Piston is a Django mini-framework creating APIs.",
+    description = "Piston is a Opps (Django) mini-framework creating APIs.",
     author = 'Jesper Noehr',
     author_email = 'jesper@noehr.org',
     packages = find_packages(),
